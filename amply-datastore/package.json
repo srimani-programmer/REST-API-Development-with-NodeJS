@@ -1,0 +1,26 @@
+{
+  "name": "amply-datastore",
+  "version": "1.0.0",
+  "description": "Providing the REST API Services for Amply Store",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/srimani-programmer/REST-API-Development-with-NodeJS.git"
+  },
+  "author": "Sri Manikanta Palakollu",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/srimani-programmer/REST-API-Development-with-NodeJS/issues"
+  },
+  "homepage": "https://github.com/srimani-programmer/REST-API-Development-with-NodeJS#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13"
+  }
+}
