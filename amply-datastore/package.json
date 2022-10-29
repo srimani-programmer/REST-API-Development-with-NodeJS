@@ -4,7 +4,6 @@
   "description": "Providing the REST API Services for Amply Store",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js"
   },
   "repository": {
