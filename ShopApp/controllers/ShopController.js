@@ -1,4 +1,5 @@
 const ShopModel = require('../models/ShopModel');
+const mongoose = require('mongoose');
 
 const fetchProducts = async (req, res) => {
     const productName = req.query.product;
@@ -131,20 +132,32 @@ const updateProductItem = async (req, res) => {
 }
 
 const deleteProductItem = async (req, res) => {
-    const productId = req.params['id'];
+    const productId = mongoose.isObjectIdOrHexString(req.params['id']);
+    console.log(productId);
+    if (productId) {
+        const _id = req.params["id"];
+        if (productId !== undefined) {
+            try {
+                const product = await ShopModel.findOne({ _id: _id }).exec();
 
-    if (productId !== undefined) {
-        try {
-            const result = await ShopModel.deleteOne({ _id: productId }).exec();
+                if (product) {
+                    const result = await ShopModel.deleteOne({ _id: _id }).exec();
 
-            if (result) {
-                res.status(200).json({ message: "Data Deleted Successfully." })
-            } else {
-                res.status(400).json({ message: "Data Deletion failed." })
+                    if (result) {
+                        res.status(200).json({ message: "Data Deleted Successfully." })
+                    } else {
+                        res.status(400).json({ message: "Data Deletion failed." })
+                    }
+                } else {
+                    res.status(404).json({ error: "Item not found." })
+                }
+            } catch (err) {
+                console.log(err)
+                res.status(500).json({ message: "Something went wrong." });
             }
-        } catch (err) {
-            res.status(500).json({ message: "Something went wrong." });
         }
+    } else {
+        res.status(404).json({ error: "Item not found." })
     }
 }
 module.exports = {
